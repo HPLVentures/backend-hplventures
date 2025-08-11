@@ -3,13 +3,19 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
+const port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post('/chat', async (req, res) => {
-    res.json({ reply: "Hallo von deinem Backend!" });
+app.get('/', (req, res) => {
+  res.send('Hallo, deine Backend-App läuft!');
 });
 
-app.listen(3000, () => {
-    console.log("Backend läuft auf http://localhost:3000");
+app.post('/chat', async (req, res) => {
+  res.json({ reply: "Hallo von deinem Backend!" });
+});
+
+app.listen(port, () => {
+  console.log(`Backend läuft auf http://localhost:${port}`);
 });
